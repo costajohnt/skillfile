@@ -2197,7 +2197,7 @@ mod tests {
                 make_target("claude-code", Scope::Local),
             ],
         };
-        assert!(undeployable_entries(&manifest).is_empty());
+        assert_eq!(undeployable_entries(&manifest), Vec::<&Entry>::new());
     }
 
     #[test]
@@ -2206,13 +2206,13 @@ mod tests {
             entries: vec![make_agent_entry("a")],
             install_targets: Vec::new(),
         };
-        assert!(undeployable_entries(&none).is_empty());
+        assert_eq!(undeployable_entries(&none), Vec::<&Entry>::new());
 
         let unknown = Manifest {
             entries: vec![make_agent_entry("a")],
             install_targets: vec![make_target("unknown-platform", Scope::Local)],
         };
-        assert!(undeployable_entries(&unknown).is_empty());
+        assert_eq!(undeployable_entries(&unknown), Vec::<&Entry>::new());
     }
 
     #[test]
